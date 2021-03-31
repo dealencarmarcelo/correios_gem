@@ -127,8 +127,8 @@ module Correios
   end
 
   module Sigep
-    def self.calculate_label_number_check_digit(data = {})
-      CalculateLabelNumberCheckDigit.new(data).request
+    def self.calculate_label_number_check_digit(credentials, data = {})
+      CalculateLabelNumberCheckDigit.new(credentials, data).request
     end
 
     def self.cancel_shipping(data = {})
@@ -147,8 +147,8 @@ module Correios
       CreateShippings.new(data).request
     end
 
-    def self.request_label_numbers(data = {})
-      RequestLabelNumbers.new(data).request
+    def self.request_label_numbers(credentials, data = {})
+      RequestLabelNumbers.new(credentials, data).request
     end
 
     def self.request_shippings_xml(data = {})

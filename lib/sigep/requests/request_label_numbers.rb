@@ -1,8 +1,8 @@
 module Correios
   module Sigep
     class RequestLabelNumbers < Helper
-      def initialize(data = {})
-        @credentials = Correios.credentials
+      def initialize(credentials, data = {})
+        @credentials = credentials
         @show_request = data[:show_request]
 
         @amount = data[:amount]
@@ -38,9 +38,9 @@ module Correios
                 xml.tipoDestinatario 'C'
                 xml.idServico @service_id
                 xml.qtdEtiquetas @amount
-                xml.identificador @credentials.cnpj
-                xml.usuario @credentials.sigep_user
-                xml.senha @credentials.sigep_password
+                xml.identificador @credentials[:cnpj]
+                xml.usuario @credentials[:sigep_user]
+                xml.senha @credentials[:sigep_password]
 
                 xml.parent.namespace = parent_namespace
               end

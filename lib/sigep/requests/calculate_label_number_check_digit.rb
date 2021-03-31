@@ -1,8 +1,8 @@
 module Correios
   module Sigep
     class CalculateLabelNumberCheckDigit < Helper
-      def initialize(data = {})
-        @credentials = Correios.credentials
+      def initialize(credentials, data = {})
+        @credentials = credentials
         @show_request = data[:show_request]
 
         @label_numbers = data[:label_numbers]
@@ -37,8 +37,8 @@ module Correios
                 @label_numbers.each do |label_number|
                   xml.etiquetas label_number
                 end
-                xml.usuario @credentials.sigep_user
-                xml.senha @credentials.sigep_password
+                xml.usuario @credentials[:sigep_user]
+                xml.senha @credentials[:sigep_password]
 
                 xml.parent.namespace = parent_namespace
               end
