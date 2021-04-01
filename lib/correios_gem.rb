@@ -105,8 +105,8 @@ module Correios
       CancelShipping.new(data).request
     end
 
-    def self.create_shippings(credentials, data = {})
-      CreateShippings.new(credentials, data).request
+    def self.create_shippings(data = {})
+      CreateShippings.new(data).request
     end
 
     def self.create_shippings_with_collection(data = {})
@@ -143,8 +143,8 @@ module Correios
       CheckServiceAvailability.new(data).request
     end
 
-    def self.create_shippings(data = {})
-      CreateShippings.new(data).request
+    def self.create_shippings(credentials, data = {})
+      CreateShippings.new(credentials, data).request
     end
 
     def self.request_label_numbers(credentials, data = {})
