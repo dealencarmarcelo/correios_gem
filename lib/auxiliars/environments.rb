@@ -54,7 +54,7 @@ module Correios
     end
 
     def self.wsdl
-      if true
+      if production_env?
         'https://apps.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl'
       else
         'https://apphom.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl'
