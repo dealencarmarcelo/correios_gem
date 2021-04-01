@@ -3,8 +3,8 @@ require_relative '../auxiliars/shipping_xml'
 module Correios
   module Sigep
     class CreateShippings < Helper
-      def initialize(data = {})
-        @credentials = Correios.credentials
+      def initialize(credentials, data = {})
+        @credentials = credentials
         @show_request = data[:show_request]
 
         @data = data
@@ -40,14 +40,14 @@ module Correios
 
                 xml.xml Sigep.shipping_xml(@data)
                 xml.idPlpCliente @request_number
-                xml.cartaoPostagem @credentials.card
+                xml.cartaoPostagem @credentials[:card]
                 @shippings.each do |shipping|
                   xml.listaEtiquetas remove_label_digit_checker(
                     shipping[:label_number].dup
                   )
                 end
-                xml.usuario @credentials.sigep_user
-                xml.senha @credentials.sigep_password
+                xml.usuario @credentials[:sigep_user]
+                xml.senha @credentials[:sigep_password]
 
                 xml.parent.namespace = parent_namespace
               end
