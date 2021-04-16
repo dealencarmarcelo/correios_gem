@@ -64,14 +64,15 @@ module Correios
           status_code: response[:status_codigo].strip,
           status_description: response[:descricao_status_cliente].strip,
           # contracts: contracts.map {|c| format_contract(c)},
-          services: @services
+          services: @services,
+          board_id: @board_id
         }
       end
 
       def format_contract(contract)
         cards = contract[:cartoes_postagem]
         cards = [cards] if cards.is_a?(Hash)
-
+        @board_id = contract[:codigo_diretoria].strip
         # {
         #   # board_id: contract[:codigo_diretoria].strip,
         #   # board_description: contract[:descricao_diretoria_regional].strip,
